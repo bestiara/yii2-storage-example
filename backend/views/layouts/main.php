@@ -5,6 +5,7 @@
 
 use backend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
@@ -36,10 +37,12 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Stores', 'url' => Url::to(['store/index'])],
+        ['label' => 'Devices', 'url' => Url::to(['device/index'])],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    }     
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
         'items' => $menuItems,
