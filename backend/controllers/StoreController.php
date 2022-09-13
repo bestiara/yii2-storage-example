@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\SearchDevice;
 use backend\models\Store;
 use backend\models\SearchStore;
 use Yii;
@@ -43,6 +44,22 @@ class StoreController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists Store Devices.
+     *
+     * @return string
+     */
+    public function actionDevices()
+    {
+        $searchModel = new SearchDevice();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('devices', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
