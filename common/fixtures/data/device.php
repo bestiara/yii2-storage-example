@@ -2,15 +2,16 @@
 
 use backend\models\Store;
 
-return [
-    'device1' => [
-        'serial' => 'NS1234567890',
-        'store_id' => Store::findOne(['name' => 'Северный'])->id,
+$faker = Faker\Factory::create();
+$stores = Store::find()->all();
+$devices = [];
+
+for ($i = 1; $i <= 100; $i++) {
+    $devices['device' . $i] = [
+        'serial' => $faker->uuid,
+        'store_id' => $faker->randomElement($stores)->id,
         'created_at' => (new DateTimeImmutable)->getTimestamp(),
-    ],
-    'device2' => [
-        'serial' => 'SS1234567890',
-        'store_id' => Store::findOne(['name' => 'Южный'])->id,
-        'created_at' => (new DateTimeImmutable)->getTimestamp(),
-    ],
-];
+    ];
+}
+
+return $devices;
