@@ -1,5 +1,9 @@
-`make init`
+Выполнить команду `make init`
 
-`make database-init`
+Отредактировать файл `/common/config/main-local.php`:
+1. В значении dsn заменить localhost на mysql
+2. В качестве значения password установить пароль verysecret
 
-http://127.0.0.1:21080/
+Выполнить команду `make database-init`
+
+Главная страница: http://127.0.0.1:21080/

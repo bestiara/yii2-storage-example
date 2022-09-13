@@ -1,7 +1,8 @@
 init: \
 	docker-clean \
 	up \
-	composer-install
+	composer-install \
+	yii-init
 
 up:
 	docker-compose up --build -d
@@ -24,3 +25,6 @@ composer-install:
 
 docker-clean:
 	docker-compose down -v --remove-orphans
+
+yii-init:
+	docker-compose run --rm backend init
