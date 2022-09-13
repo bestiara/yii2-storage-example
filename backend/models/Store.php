@@ -36,6 +36,11 @@ class Store extends ActiveRecord
         ];
     }
 
+    public function getDevices()
+    {
+        return $this->hasMany(Device::class, ['store_id' => 'id']);
+    }
+
     /**
      * {@inheritdoc}
      */

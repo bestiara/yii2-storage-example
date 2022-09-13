@@ -27,6 +27,11 @@ class Device extends ActiveRecord
         return 'device';
     }
 
+    public function getStore()
+    {
+        return $this->hasOne(Store::class, ['id' => 'store_id']);
+    }
+
     /**
      * {@inheritdoc}
      */
