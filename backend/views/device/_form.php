@@ -1,5 +1,8 @@
 <?php
 
+use backend\models\Store;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,13 +15,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
     <?= $form->field($model, 'serial')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'store_id')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'store_id')->widget(Select2::class, [
+        'data' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Select store ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

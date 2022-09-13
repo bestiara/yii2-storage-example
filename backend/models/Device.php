@@ -27,6 +27,16 @@ class Device extends ActiveRecord
         return 'device';
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['serial', 'store_id'], 'required'],
+        ];
+    }
+
     public function getStore()
     {
         return $this->hasOne(Store::class, ['id' => 'store_id']);

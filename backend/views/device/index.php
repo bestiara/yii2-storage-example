@@ -2,11 +2,12 @@
 
 use backend\models\Device;
 use backend\models\Store;
-use yii\grid\DataColumn;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /** @var yii\web\View $this */
 /** @var backend\models\SearchDevice $searchModel */
@@ -39,6 +40,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => static function($model) {
                     return $model->store->name;
                 },
+                'filter' =>  Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'store_id',
+                    'data' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
+                    'value' => 'store.name',
+                    'options' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Choose store'
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'selectOnClose' => true,
+                    ]
+                ])
             ],
             [
               'attribute' => 'created_at',
