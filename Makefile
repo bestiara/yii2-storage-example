@@ -2,7 +2,8 @@ init: \
 	docker-clean \
 	up \
 	composer-install \
-	yii-init
+	yii-init \
+	database-init
 
 up:
 	docker-compose up --build -d
